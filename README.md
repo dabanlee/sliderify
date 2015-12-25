@@ -68,3 +68,7 @@ $('.sliderify-wrapper').sliderify({
 	keyboardControl: true 
 });
 ```
+
+### Todos
+
+- Touch support.
