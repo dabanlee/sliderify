@@ -2,6 +2,8 @@
 
 A Simple Slider.
 
+[Demo](http://justclear.github.io/sliderify)
+
 ## Getting Started With Sliderify
 
 ### Import CSS and JavaScript file.
