@@ -1,0 +1,26 @@
+{
+  "name": "sliderify",
+  "version": "1.0.0",
+  "description": "A simple slider.",
+  "main": "bundle.js",
+  "devDependencies": {
+    "gulp": "^3.9.0",
+    "gulp-sass": "^2.1.0"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/justclear/sliderify.git"
+  },
+  "keywords": [
+    "sliderify"
+  ],
+  "author": "JustClear",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/justclear/sliderify/issues"
+  },
+  "homepage": "https://github.com/justclear/sliderify#readme"
+}

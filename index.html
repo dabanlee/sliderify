@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+	<title>Sliderify</title>
+	<link rel="stylesheet" href="./dist/css/sliderify.css">
+</head>
+<body>
+
+	<div class="sliderify-container">
+		<div class="sliderify-wrapper">
+			<div class="sliderify-slide">Slide 1</div>
+			<div class="sliderify-slide">Slide 2</div>
+			<div class="sliderify-slide">Slide 3</div>
+			<div class="sliderify-slide">Slide 4</div>
+			<div class="sliderify-slide">Slide 5</div>
+		</div>
+
+		<div class="sliderify-prev">Prev</div>
+		<div class="sliderify-next">Next</div>
+		
+		<div class="sliderify-pagination"></div>
+	</div>
+
+	<script src="./libs/jquery/dist/jquery.js"></script>
+	<!-- <script src="./libs/jquery/dist/jquery-1.9.1.min.js"></script> -->
+	<script src="./src/js/sliderify.js"></script>
+	<script>
+		$('.sliderify-container').sliderify({
+			// default options
+			initialSlide: 0,
+			autoPlay: true,
+			autoPlayInterval: 3000,
+			hidePagination: false,
+			hidePaginationButtons: false,
+			keyboardControl: true
+		});
+	</script>
+</body>
+</html>

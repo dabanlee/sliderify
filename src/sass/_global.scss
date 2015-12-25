@@ -1,0 +1,22 @@
+//
+// Global
+//
+
+* {
+	border: none;
+	padding: 0;
+	@include box-sizing();
+}
+
+body {
+	font-family: "MicroSoft Yahei";
+}
+
+a {
+	text-decoration: none;
+	-webkit-tap-highlight-color: transparent;
+
+	&:hover {
+		text-decoration: none;
+	}
+}

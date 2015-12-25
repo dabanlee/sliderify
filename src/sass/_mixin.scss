@@ -1,0 +1,26 @@
+//
+// Mixin
+//
+
+@mixin box-sizing($box-modal: border-box) {
+	-webkit-box-sizing: $box-modal;
+	   -moz-box-sizing: $box-modal;
+			box-sizing: $box-modal;
+}
+
+@mixin transform($type) {
+	-webkit-transform: $type;
+	   -moz-transform: $type;
+		-ms-transform: $type;
+			transform: $type;
+}
+
+@mixin transition($time: .3s) {
+	transition: all $time;
+}
+
+@mixin clearfix() {
+	display: table;
+	content: "";
+	clear: both;
+}
