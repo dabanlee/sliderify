@@ -117,7 +117,24 @@
 
 		if(this.options.keyboardControl === true) {
 
-			$(document).on('keydown', this.keyEvents);
+			$(document).on('keydown', function() {
+				//
+				// console.log('keyEvents');
+
+				var keyCode = event.keyCode || event.which;
+
+				// keyCode 65 => A, keyCode 37 => Left
+				if(keyCode === 65 || keyCode === 37) {
+
+					self.prevSlider();
+				}
+
+				// keyCode 68 => S, keyCode 39 => Right
+				if(keyCode === 68 || keyCode === 39) {
+
+					self.nextSlider();
+				}
+			});
 		}
 
 		if(this.options.autoPlay === true) {
@@ -174,30 +191,6 @@
 	}
 
 	/**
-	 * The keyboard events.
-	 * @public
-	 */
-	Sliderify.prototype.keyEvents = function() {
-		//
-		console.log('keyEvents');
-
-		var keyCode = event.keyCode || event.which,
-			self = this;
-
-		// keyCode 65 => A, keyCode 37 => Left
-		if(keyCode === 65 || keyCode === 37) {
-
-			self.prevSlider();
-		}
-
-		// keyCode 68 => S, keyCode 39 => Right
-		if(keyCode === 68 || keyCode === 39) {
-
-			self.nextSlider();
-		}
-	}
-
-	/**
 	 * Auto play function.
 	 * @public
 	 */
@@ -207,16 +200,7 @@
 
 		var self = this,
 			timer = null,
-			autoPlayInterval = null,
-			slidingInterval = null,
-			interval = null;
-
-		/**
-		 * Make sure auto play interval greater than sliding interval
-		 */
-		autoPlayInterval = this.options.autoPlayInterval,
-		slidingInterval = this.options.slidingInterval,
-		interval = autoPlayInterval > slidingInterval ? autoPlayInterval : slidingInterval;
+			interval = this.options.autoPlayInterval + this.options.slidingInterval;
 
 		timer = setInterval(function() {
 			
@@ -253,7 +237,7 @@
 	 */
 	Sliderify.prototype.prevSlider = function() {
 		//
-		console.log('prevSlider');
+		// console.log('prevSlider');
 
 		var slideNum = this.slideNum(),
 			currentIndex = $('.current').index();
@@ -274,7 +258,7 @@
 	 */
 	Sliderify.prototype.nextSlider = function() {
 		//
-		console.log('nextSlider');
+		// console.log('nextSlider');
 
 		var slideNum = this.slideNum(),
 			currentIndex = $('.current').index();
@@ -318,7 +302,7 @@
 		initialSlide: 0,
 		autoPlay: true,
 		autoPlayInterval: 3000,
-		slidingInterval: 5000,
+		slidingInterval: 500,
 		slidingEasing: 'linear',
 		hidePagination: false,
 		hidePaginationButtons: false,
