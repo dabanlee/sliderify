@@ -92,5 +92,5 @@ $('.sliderify-wrapper').sliderify({
 
 - Touch support.
 - Loop slide.
-- On hover stop automatic play.
+- On hover stop automatic play. - Done
 - Mousewheel control
