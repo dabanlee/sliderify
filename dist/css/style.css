@@ -1,14 +1,20 @@
 .sliderify-container .sliderify-slide:nth-child(1) {
-  background: #F06868; }
+  background: #F06868;
+}
 .sliderify-container .sliderify-slide:nth-child(2) {
-  background: #5B64F5; }
+  background: #5B64F5;
+}
 .sliderify-container .sliderify-slide:nth-child(3) {
-  background: #62C778; }
+  background: #62C778;
+}
 .sliderify-container .sliderify-slide:nth-child(4) {
-  background: #F06868; }
+  background: #F06868;
+}
 .sliderify-container .sliderify-slide:nth-child(5) {
-  background: #5B64F5; }
+  background: #5B64F5;
+}
 .sliderify-container .sliderify-slide:nth-child(6) {
-  background: #62C778; }
+  background: #62C778;
+}
 
 /*# sourceMappingURL=style.css.map */
