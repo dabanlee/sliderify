@@ -3,7 +3,7 @@
  * http://justclear.github.io/sliderify
  * 
  * Author: Clear
- * Version: 1.1.0
+ * Version: 1.1.1
  * Update: 2015-12-25
  * 
  * Released under the MIT license
@@ -16,29 +16,66 @@
 	 * @public
 	 */
 	Sliderify.defaults = {
-		// Initial slide.
+
+		/**
+		 * Initial slide.
+		 * @param {Number}
+		 */
 		initialSlide: 0, 
 		
-		// Whether to auto play.
+		/**
+		 * Whether to auto play.
+		 * @param {Boolean}
+		 */
 		autoPlay: true, 
 		
-		// Auto play interval.
+		/**
+		 * Auto play interval.
+		 * @param {Number}
+		 */
 		autoPlayInterval: 3000,
 
-		// On hover to stop automaic play.
+		/**
+		 * On hover to stop automaic play.
+		 * @param {Boolean}
+		 */
 		onHoverStopAutoPlay: true,
 
-		// Sliding interval.
+		/**
+		 * Sliding interval.
+		 * @param {Number}
+		 */
 		slidingInterval: 500,
 		
-		// Whether to hide the pagination.
+		/**
+		 * Whether to hide the pagination.
+		 * @param {Boolean}
+		 */
 		hidePagination: false, 
 		
-		// Whether to hide the pagination buttons.
+		/**
+		 * Whether to hide the pagination buttons.
+		 * @param {Boolean}
+		 */
 		hidePaginationButtons: false, 
 		
-		// Whether use keyboard to control.
-		keyboardControl: true 
+		/**
+		 * Pagination buttons text.
+		 * @param {Array | String}
+		 */
+		paginationButtonsText: ['Prev', 'Next'], 
+		
+		/**
+		 * Whether use keyboard to control.
+		 * @param {Boolean}
+		 */
+		keyboardControl: true, 
+		
+		/**
+		 * Support drag to slide.
+		 * @param {Boolean}
+		 */
+		isDraggable: true
 	}
 
 	/**
@@ -75,7 +112,7 @@
 	 * @protected
 	 */
 	Sliderify.prototype.initialize = function() {
-		console.log(this.current());
+		// console.log(this.current());
 
 		this.render();
 		this.setup();
@@ -177,6 +214,14 @@
 
 			this.autoPlay();
 		}
+
+		/**
+		 * Set draggable.
+		 */
+		if(this.options.isDraggable === true) {
+
+			this.drag();
+		}
 	}
 
 	/**
@@ -204,6 +249,18 @@
 			});
 		}
 
+		if(this.options.paginationButtonsText === 'arrow') {
+
+			this.$element.children('.sliderify-prev, .sliderify-next')
+			.addClass('arrow');
+		} else {
+
+			this.$element.children('.sliderify-prev')
+			.text(this.options.paginationButtonsText[0])
+			.parent().children('.sliderify-next')
+			.text(this.options.paginationButtonsText[1]);
+		}
+
 		if(this.options.hidePagination === true) {
 
 			this.$element.find('.sliderify-pagination').css({
@@ -226,12 +283,13 @@
 	 * Auto play function.
 	 * @public
 	 */
-	Sliderify.prototype.autoPlay = function() {
+	Sliderify.prototype.autoPlay = function(isAuto) {
 		//
 		// console.log('autoPlay');
 
 		var self = this,
 			timer = null,
+			isAuto = isAuto || true,
 			interval = this.options.autoPlayInterval + this.options.slidingInterval;
 
 		timer = setInterval(function() {
@@ -246,12 +304,12 @@
 		if(this.options.onHoverStopAutoPlay === true) {
 
 			this.$element.mouseenter(function() {
-				console.log('Enter');
+				// console.log('Enter');
 
 				clearInterval(timer);
 				
 			}).mouseleave(function() {
-				console.log('Leave');
+				// console.log('Leave');
 
 				timer = setInterval(function() {
 					
@@ -321,6 +379,62 @@
 	}
 
 	/**
+	 * Support drag to slide.
+	 * @public
+	 */
+	Sliderify.prototype.drag = function() {
+
+		var canMove = false,
+			self = this,
+			startX = null,
+			endX = null,
+			currentX = null,
+			_x = null;
+
+		this.$element.find(".sliderify-wrapper").mousedown(function(event){
+			// console.log('Mouse Down');
+
+			event.preventDefault();
+			canMove = true;
+			startX = event.pageX;
+
+			_x = event.pageX - parseInt($(this).css('left'));
+		});
+
+		$(document).mousemove(function(event){
+
+			if(canMove){
+				// console.log('Mouse Move');
+
+				currentX = event.pageX - _x;
+				self.$element.find(".sliderify-wrapper").css({
+					'left': currentX
+				});
+			} 
+
+		}).mouseup(function(event){
+
+			if(canMove) {
+				// console.log('Mouse Up');
+				// console.log(startX);
+				// console.log(endX);
+				// console.log(startX - endX);
+				endX = event.pageX;
+				
+				if(startX - endX > 0) {
+
+					self.nextSlider();
+				} else if(startX - endX < 0) {
+
+					self.prevSlider();
+				}
+			}
+
+			canMove = false;
+		});
+	}
+
+	/**
 	 * Slider items number.
 	 * @public
 	 * @return {Number} - the number of slides
@@ -375,6 +489,6 @@
 		});
 	};
 
-	$.fn.sliderify.version = '1.1.0';
+	$.fn.sliderify.version = '1.1.1';
 
 })(jQuery);
