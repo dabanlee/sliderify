@@ -7,24 +7,25 @@
 	<link rel="stylesheet" href="./dist/css/sliderify.css">
 </head>
 <body>
+	<div class="container">
+		<div class="sliderify-container">
+			<div class="sliderify-wrapper" draggable="true">
+				<div class="sliderify-slide">Slide 1</div>
+				<div class="sliderify-slide">Slide 2</div>
+				<div class="sliderify-slide">Slide 3</div>
+				<div class="sliderify-slide">Slide 4</div>
+				<div class="sliderify-slide">Slide 5</div>
+			</div>
 
-	<div class="sliderify-container">
-		<div class="sliderify-wrapper">
-			<div class="sliderify-slide">Slide 1</div>
-			<div class="sliderify-slide">Slide 2</div>
-			<div class="sliderify-slide">Slide 3</div>
-			<div class="sliderify-slide">Slide 4</div>
-			<div class="sliderify-slide">Slide 5</div>
+			<div class="sliderify-prev"></div>
+			<div class="sliderify-next"></div>
+			
+			<div class="sliderify-pagination"></div>
 		</div>
-
-		<div class="sliderify-prev">Prev</div>
-		<div class="sliderify-next">Next</div>
-		
-		<div class="sliderify-pagination"></div>
 	</div>
 
-	<script src="./libs/jquery/dist/jquery.js"></script>
-	<!-- <script src="./libs/jquery/dist/jquery-1.9.1.min.js"></script> -->
+	<!-- <script src="./libs/jquery/dist/jquery.js"></script> -->
+	<script src="./libs/jquery/dist/jquery-1.9.1.min.js"></script>
 	<script src="./src/js/sliderify.js"></script>
 	<script>
 		$('.sliderify-container').sliderify({
@@ -33,9 +34,25 @@
 			autoPlay: true,
 			autoPlayInterval: 3000,
 			hidePagination: false,
+			paginationButtonsText: 'arrow',
 			hidePaginationButtons: false,
-			keyboardControl: true
+			keyboardControl: true,
+			// isDraggable: false
 		});
+
+		// $('.sliderify-wrapper').on('dragstart', function(event) {
+		// 	event.preventDefault();
+		// 	console.log('Drag tart');
+		// });
+
+		// $(document).on('drag', function(event) {
+		// 	console.log('Drag');
+		// });
+
+		// $(document).on('dragend', function(event) {
+		// 	console.log('Drag End');
+		// 	$(this).unbind('mousemove');
+		// })
 	</script>
 </body>
 </html>

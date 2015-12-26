@@ -1,3 +1,9 @@
+.container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
 .sliderify-container {
   height: 500px;
   min-height: 60px;
@@ -77,8 +83,14 @@
 .sliderify-container .sliderify-prev {
   left: 1em;
 }
+.sliderify-container .sliderify-prev.arrow {
+  background: url("../img/arrow-left.png") no-repeat 45% 50%;
+}
 .sliderify-container .sliderify-next {
   right: 1em;
+}
+.sliderify-container .sliderify-next.arrow {
+  background: url("../img/arrow-right.png") no-repeat 55% 50%;
 }
 
 /*# sourceMappingURL=sliderify.css.map */
