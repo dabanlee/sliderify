@@ -6,6 +6,10 @@ A Simple Slider.
 
 ## Features
 
+### New Features V1.1.1
+
+- Draggable.
+
 ### New Features V1.1.0
 
 - Restructure the whole plugin - makes the code easier to read.
@@ -91,6 +95,7 @@ $('.sliderify-wrapper').sliderify({
 ### Todos
 
 - Touch support.
+- Draggable support. - Done
 - Loop slide.
 - On hover stop automatic play. - Done
 - Mousewheel control
