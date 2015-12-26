@@ -23,6 +23,12 @@ A Simple Slider.
 
 ## Getting Started With Sliderify
 
+### Install
+
+```
+bower install sliderify
+```
+
 ### Import CSS and JavaScript file.
 
 ```
