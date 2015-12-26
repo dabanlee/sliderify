@@ -82,13 +82,22 @@ $('.sliderify-wrapper').sliderify({
 	slidingInterval: 500,
 	
 	// Whether to hide the pagination.
-	hidePagination: false, 
+	hidePagination: false,
 	
 	// Whether to hide the pagination buttons.
-	hidePaginationButtons: false, 
+	hidePaginationButtons: false,
+
+	// Pagination buttons text,
+	// If you want to use text pagination,
+	// You can use array `['Prev', 'Next']`,
+	// Otherwise you can use string `'arrow'`.
+	paginationButtonsText: 'arrow', 
 	
 	// Whether use keyboard to control.
-	keyboardControl: true 
+	keyboardControl: true
+
+	// Whether to support drag.
+	isDraggable: true
 });
 ```
 
