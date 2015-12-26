@@ -4,6 +4,19 @@ A Simple Slider.
 
 [Demo](http://justclear.github.io/sliderify)
 
+## Features
+
+### New Features V1.1.0
+
+- Restructure the whole plugin - makes the code easier to read.
+- Fixed animation delay bug.
+
+### Features V1.0.0
+
+- Responsive design.
+- Keyboard control.
+- Automatic play.
+
 ## Getting Started With Sliderify
 
 ### Import CSS and JavaScript file.
@@ -56,7 +69,13 @@ $('.sliderify-wrapper').sliderify({
 	autoPlay: true, 
 	
 	// Auto play interval.
-	autoPlayInterval: 3000, 
+	autoPlayInterval: 3000,
+
+	// On hover to stop automaic play.
+	onHoverStopAutoPlay: true,
+
+	// Sliding interval.
+	slidingInterval: 500,
 	
 	// Whether to hide the pagination.
 	hidePagination: false, 
@@ -72,3 +91,6 @@ $('.sliderify-wrapper').sliderify({
 ### Todos
 
 - Touch support.
+- Loop slide.
+- On hover stop automatic play.
+- Mousewheel control
