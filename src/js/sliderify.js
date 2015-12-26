@@ -25,6 +25,9 @@
 		// Auto play interval.
 		autoPlayInterval: 3000,
 
+		// On hover to stop automaic play.
+		onHoverStopAutoPlay: true,
+
 		// Sliding interval.
 		slidingInterval: 500,
 		
@@ -72,7 +75,7 @@
 	 * @protected
 	 */
 	Sliderify.prototype.initialize = function() {
-		// console.log(this.current());
+		console.log(this.current());
 
 		this.render();
 		this.setup();
@@ -235,6 +238,27 @@
 			
 			self.nextSlider();
 		}, interval);
+
+		/**
+		 * On hover to stop automatic play.
+		 * @public
+		 */
+		if(this.options.onHoverStopAutoPlay === true) {
+
+			this.$element.mouseenter(function() {
+				console.log('Enter');
+
+				clearInterval(timer);
+				
+			}).mouseleave(function() {
+				console.log('Leave');
+
+				timer = setInterval(function() {
+					
+					self.nextSlider();
+				}, interval);
+			});
+		}
 	}
 
 	/**
