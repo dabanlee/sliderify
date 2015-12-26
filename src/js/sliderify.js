@@ -12,6 +12,33 @@
 ;(function($) {
 
 	/**
+	 * Sliderify default options.
+	 * @public
+	 */
+	Sliderify.defaults = {
+		// Initial slide.
+		initialSlide: 0, 
+		
+		// Whether to auto play.
+		autoPlay: true, 
+		
+		// Auto play interval.
+		autoPlayInterval: 3000,
+
+		// Sliding interval.
+		slidingInterval: 500,
+		
+		// Whether to hide the pagination.
+		hidePagination: false, 
+		
+		// Whether to hide the pagination buttons.
+		hidePaginationButtons: false, 
+		
+		// Whether use keyboard to control.
+		keyboardControl: true 
+	}
+
+	/**
 	 * Creates a slider.
 	 * @class The Sliderify.
 	 * @public
@@ -25,14 +52,18 @@
 		 * Plugin element.
 		 * @public
 		 */
-		this.element = element;
 		this.$element = $(element);
 
 		/**
 		 * Current options set by the caller including defaults.
 		 * @public
 		 */
-		this.options = $.extend({}, $.fn.sliderify.defaults, options);
+		this.options = $.extend({}, Sliderify.defaults, options);
+
+		/**
+		 * Initializes the sliderify.
+		 * @protected
+		 */
 		this.initialize();
 	}
 
@@ -41,10 +72,7 @@
 	 * @protected
 	 */
 	Sliderify.prototype.initialize = function() {
-		var element = this.element,
-			currentIndex = this.options.initialSlide;
-
-		// console.log(this.element);	
+		// console.log(this.current());
 
 		this.render();
 		this.setup();
@@ -56,20 +84,22 @@
 	 * @public
 	 */
 	Sliderify.prototype.render = function() {
-		//
-		// console.log('render');
-		// console.log(this.slideNum());
+
 		var sliderNum = this.slideNum(),
-			currentIndex = $(this).index(),
 			bulletText = '';
 
-		// render bullet
+		/**
+		 * Render bullet.
+		 */
 		for(var i = 0; i < sliderNum; i ++) {
 			bulletText += '<span class="sliderify-bullet"></span>';
 		}
 
 		$(bulletText).appendTo('.sliderify-pagination');
 
+		/**
+		 * Set the initial slide.
+		 */
 		if((this.options.initialSlide - 1) < 0) {
 
 			this.changeSlider(0);
@@ -92,14 +122,10 @@
 	Sliderify.prototype.setup = function() {
 		//
 		// console.log('setup');
-		var currentIndex = 0,
+		var currentIndex = null,
 			self = this;
 
 		this.$element.find('.sliderify-bullet').on('click', function() {
-
-			$(this).addClass('current')
-			.siblings()
-			.removeClass('current');
 
 			currentIndex = $(this).index();
 			self.changeSlider(currentIndex);
@@ -115,6 +141,10 @@
 			self.nextSlider();
 		});
 
+
+		/**
+		 * Set keyboard control.
+		 */
 		if(this.options.keyboardControl === true) {
 
 			$(document).on('keydown', function() {
@@ -137,6 +167,9 @@
 			});
 		}
 
+		/**
+		 * Set automatic play.
+		 */
 		if(this.options.autoPlay === true) {
 
 			this.autoPlay();
@@ -153,15 +186,11 @@
 
 		var sliderNum = this.slideNum();
 
-		$('.sliderify-container').css({
-			// 
-		});
-
 		this.$element.find('.sliderify-slide').css({
 			'width' : (100 / sliderNum) + '%'
 		});
 
-		$('.sliderify-container').children('.sliderify-wrapper').css({
+		this.$element.children('.sliderify-wrapper').css({
 			'width': sliderNum * 100 + '%'
 		});
 
@@ -217,18 +246,14 @@
 		//
 		// console.log('changeSlider');
 
-		var currentIndex = currentIndex,
-			pagination = $('.sliderify-pagination');
+		var currentIndex = currentIndex;
 
-		this.$element.find('.sliderify-slide').removeClass('current')
-		.eq(currentIndex).addClass('current');
+		this.updateCurrent(currentIndex);
 
-		pagination.children('span').removeClass('current')
-		.eq(currentIndex).addClass('current');
+		this.$element.find('.sliderify-wrapper').stop(true, true).animate({
 
-		this.$element.find('.sliderify-wrapper').animate({
 			'left': (- currentIndex * 100) + '%'
-		}, this.options.slidingInterval, this.options.slidingEasing);
+		}, this.options.slidingInterval);
 	}
 
 	/**
@@ -239,14 +264,13 @@
 		//
 		// console.log('prevSlider');
 
-		var slideNum = this.slideNum(),
-			currentIndex = $('.current').index();
+		var currentIndex = $('.current').index();
 
 		currentIndex --;
 
 		if(currentIndex < 0){
 
-			currentIndex = slideNum - 1;
+			currentIndex = this.slideNum() - 1;
 		}
 
 		this.changeSlider(currentIndex);
@@ -260,12 +284,11 @@
 		//
 		// console.log('nextSlider');
 
-		var slideNum = this.slideNum(),
-			currentIndex = $('.current').index();
+		var currentIndex = $('.current').index();
 
 		currentIndex ++;
 
-		if(currentIndex > slideNum - 1){
+		if(currentIndex > this.slideNum() - 1){
 
 			currentIndex = 0;
 		}
@@ -286,6 +309,40 @@
 		return slideNum;
 	}
 
+	/**
+	 * Slider current index.
+	 * @public
+	 * @return {Number} - the index of slides
+	 */
+	Sliderify.prototype.current = function() {
+		//
+		// console.log('sliderItems');
+		var current = this.options.initialSlide || 0;
+
+		this.$element.find('.sliderify-slide, .sliderify-bullet')
+		.removeClass('current').eq(current).addClass('current');
+
+		current = $('.current').index();
+
+		return current;
+	}
+
+	/**
+	 * Update current index.
+	 * @public
+	 * @param {Number} - the current index of slides
+	 */
+	Sliderify.prototype.updateCurrent = function(currentIndex) {
+		//
+		this.$element.find('.sliderify-slide')
+		.removeClass('current').eq(currentIndex)
+		.addClass('current');
+
+		this.$element.find('.sliderify-pagination span')
+		.removeClass('current').eq(currentIndex)
+		.addClass('current');
+	}
+
 	$.fn.sliderify = function(options) {
 
 		return this.each(function() {
@@ -294,21 +351,6 @@
 		});
 	};
 
-	/**
-	 * Sliderify default options.
-	 * @public
-	 */
-	$.fn.sliderify.defaults = {
-		initialSlide: 0,
-		autoPlay: true,
-		autoPlayInterval: 3000,
-		slidingInterval: 500,
-		slidingEasing: 'linear',
-		hidePagination: false,
-		hidePaginationButtons: false,
-		keyboardControl: true
-	}
-
-	$.fn.sliderify.version = '1.0.0';
+	$.fn.sliderify.version = '1.1.0';
 
 })(jQuery);

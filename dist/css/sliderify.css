@@ -1,5 +1,6 @@
 .sliderify-container {
   height: 500px;
+  min-height: 60px;
   position: relative;
   background: #ddd;
   overflow: hidden;
@@ -17,6 +18,9 @@
   float: left;
   height: 100%;
   text-align: center;
+}
+.sliderify-container .sliderify-slide img {
+  width: 100%;
 }
 .sliderify-container .sliderify-slide:nth-child(1) {
   background: #F06868;
