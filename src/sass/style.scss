@@ -2,7 +2,26 @@
 // Style
 //
 
+.header {
+	position: fixed;
+	top: 0;
+	width: 100%;
+	height: 100px;
+	z-index: 9;
+}
+
+.cover {
+	background-position: center center;
+	background-size: cover;
+}
+
+.footer {
+	text-align: center;
+	padding: 3em 0;
+}
+
 .sliderify-container {
+	height: 600px;
 
 	.sliderify-slide {
 
