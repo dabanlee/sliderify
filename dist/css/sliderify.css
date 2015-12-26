@@ -5,6 +5,25 @@
   background: #ddd;
   overflow: hidden;
 }
+@media (max-width: 1024px) {
+  .sliderify-container {
+    height: 400px;
+  }
+}
+@media (max-width: 768px) {
+  .sliderify-container {
+    height: 300px;
+  }
+  .sliderify-container .sliderify-prev,
+  .sliderify-container .sliderify-next {
+    display: none;
+  }
+}
+@media (max-width: 640px) {
+  .sliderify-container {
+    height: 250px;
+  }
+}
 .sliderify-container .sliderify-wrapper {
   display: table;
   content: "";

@@ -19,6 +19,26 @@ $container-height: 500px;
 	background: #ddd;
 	overflow: hidden;
 
+	@media(max-width: 1024px) {
+		
+		height: 400px;
+	}
+
+	@media(max-width: 768px) {
+		
+		height: 300px;
+
+		.sliderify-prev,
+		.sliderify-next {
+			display: none;
+		}
+	}
+
+	@media(max-width: 640px) {
+		
+		height: 250px;
+	}
+
 	.sliderify-wrapper {
 		@include clearfix();
 

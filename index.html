@@ -10,18 +10,24 @@
 </head>
 <body>
 
+	<div class="fork-me">
+		<a href="https://github.com/JustClear/sliderify" target="_blank">Fork me on Github</a>
+	</div>
+
 	<header class="header">
-		
+		<div class="container">
+			
+		</div>
 	</header>
 
 	<div class="sliderify-container">
 		<div class="sliderify-wrapper" draggable="true">
-			<div class="sliderify-slide cover" style="background-image: url('./dist/img/1.png');"></div>
-			<div class="sliderify-slide cover" style="background-image: url('./dist/img/1.jpg');"></div>
-			<div class="sliderify-slide cover" style="background-image: url('./dist/img/2.png');"></div>
-			<div class="sliderify-slide cover" style="background-image: url('./dist/img/2.jpg');"></div>
-			<div class="sliderify-slide cover" style="background-image: url('./dist/img/3.png');"></div>
-			<div class="sliderify-slide cover" style="background-image: url('./dist/img/3.jpg');"></div>
+			<div class="sliderify-slide"><h1></h1>Slide One</div>
+			<div class="sliderify-slide">Slide Two</div>
+			<div class="sliderify-slide">Slide Three</div>
+			<div class="sliderify-slide">Slide Four</div>
+			<div class="sliderify-slide">Slide Five</div>
+			<div class="sliderify-slide">Slide Six</div>
 		</div>
 
 		<div class="sliderify-prev"></div>
@@ -79,29 +85,38 @@
 			<pre>
 				<code>
 $('.sliderify-wrapper').sliderify({
-    // Initial slide.
-    initialSlide: 0, 
+	// Initial slide.
+	initialSlide: 0, 
+	
+	// Whether to auto play.
+	autoPlay: true, 
+	
+	// Auto play interval.
+	autoPlayInterval: 3000,
 
-    // Whether to auto play.
-    autoPlay: true, 
+	// On hover to stop automaic play.
+	onHoverStopAutoPlay: true,
 
-    // Auto play interval.
-    autoPlayInterval: 3000,
+	// Sliding interval.
+	slidingInterval: 500,
+	
+	// Whether to hide the pagination.
+	hidePagination: false,
+	
+	// Whether to hide the pagination buttons.
+	hidePaginationButtons: false,
 
-    // On hover to stop automaic play.
-    onHoverStopAutoPlay: true,
+	// Pagination buttons text,
+	// If you want to use text pagination,
+	// You can use array `['Prev', 'Next']`,
+	// Otherwise you can use string `'arrow'`.
+	paginationButtonsText: 'arrow', 
+	
+	// Whether use keyboard to control.
+	keyboardControl: true
 
-    // Sliding interval.
-    slidingInterval: 500,
-
-    // Whether to hide the pagination.
-    hidePagination: false, 
-
-    // Whether to hide the pagination buttons.
-    hidePaginationButtons: false, 
-
-    // Whether use keyboard to control.
-    keyboardControl: true 
+	// Whether to support drag.
+	isDraggable: true
 });
 				</code>
 			</pre>
@@ -138,9 +153,8 @@ $('.sliderify-wrapper').sliderify({
 			onHoverStopAutoPlay: true,
 			slidingInterval: 500,
 			hidePagination: false,
-			paginationButtonsText: 'arrow',
 			hidePaginationButtons: false,
-			paginationButtonsText: ['Prev', 'Next'], 
+			paginationButtonsText: 'arrow',
 			keyboardControl: true,
 			isDraggable: true
 		});
