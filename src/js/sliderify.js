@@ -22,6 +22,12 @@
 		 * @param {Number}
 		 */
 		initialSlide: 0, 
+
+		/**
+		 * Loop slide.
+		 * @param {Boolean}
+		 */
+		loop: false, 
 		
 		/**
 		 * Whether to auto play.
@@ -330,6 +336,30 @@
 
 		var currentIndex = currentIndex;
 
+		if(currentIndex < 0){
+
+			if(this.options.loop === true) {
+
+				currentIndex = this.slideNum() - 1;
+			} else {
+
+				currentIndex = 0;
+			}
+
+		} else if(currentIndex > this.slideNum() - 1) {
+
+			if(this.options.loop === true) {
+
+				currentIndex = 0;
+			} else {
+
+				currentIndex = this.slideNum() - 1;
+			}
+
+		}
+
+		// console.log(currentIndex);
+
 		this.updateCurrent(currentIndex);
 
 		this.$element.find('.sliderify-wrapper').stop(true, true).animate({
@@ -350,11 +380,6 @@
 
 		currentIndex --;
 
-		if(currentIndex < 0){
-
-			currentIndex = this.slideNum() - 1;
-		}
-
 		this.changeSlider(currentIndex);
 	}
 
@@ -369,12 +394,7 @@
 		var currentIndex = $('.current').index();
 
 		currentIndex ++;
-
-		if(currentIndex > this.slideNum() - 1){
-
-			currentIndex = 0;
-		}
-
+		
 		this.changeSlider(currentIndex);
 	}
 
