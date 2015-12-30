@@ -1,0 +1,21 @@
+/*!
+ * If no "files" property is present in a tsconfig.json, 
+ * the compiler defaults to including all files the containing directory and subdirectories. 
+ * When a "files" property is specified, 
+ * only those files are included.
+*/
+{
+	"compilerOptions": {
+		"target": "es6",
+		"out": "/dist/js/sliderify.ts.js"
+		// "module": "commonjs",
+		// "noImplicitAny": true,
+		// "removeComments": true,
+		// "preserveConstEnums": true,
+		// "sourceMap": true
+	},
+	"files": [
+		// "core.ts",
+		// "module.ts"
+	]
+}
